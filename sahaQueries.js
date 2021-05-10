@@ -27,7 +27,6 @@ const getSahaIsPlani = (req,res)=>{
 
 const delFromSaha = (req,res)=>{
     var il_kodu=req.body.il_kodu
-
     const q_del_data_saha = `DELETE FROM is_plani_saha WHERE il_kodu='${il_kodu}'`
 
     pool.query(q_del_data_saha,(error, results)=>{

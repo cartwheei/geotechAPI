@@ -22,7 +22,7 @@ app.post('/ofisdel',o_db.delFromOfis )
 
 app.get('/saha',s_db.getSahaIsPlani)
 app.post('/sahapost',s_db.insertSaha)
-app.delete('/sahadel',s_db.delFromSaha )
+app.post('/sahadel',s_db.delFromSaha )
 
 
   app.listen(port, () => {
