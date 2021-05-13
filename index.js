@@ -3,6 +3,7 @@ const express = require('express')
 
 const o_db = require('./ofisQueries')
 const s_db = require('./sahaQueries')
+const g_db = require('./geometryQueries')
 
 var cors = require('cors');
 
@@ -24,6 +25,8 @@ app.get('/saha',s_db.getSahaIsPlani)
 app.post('/sahapost',s_db.insertSaha)
 app.post('/sahadel',s_db.delFromSaha )
 
+
+app.post('/geo', g_db.ilSınır)
 
   app.listen(port, () => {
     console.log(`App running on port ${port}.`)
