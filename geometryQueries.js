@@ -20,7 +20,7 @@ const ilSınır=(req, res)=>{
     const q_get_geo_prop2= `SELECT jsonb_build_object('type', 'FeatureCollection', 'features', jsonb_agg(features.feature))
     FROM (SELECT jsonb_build_object('type','Feature','geometry',ST_AsGeoJSON(ST_TRANSFORM(geom,4326))::jsonb,'properties', to_jsonb(inputs) - 'geom' - 'gid' - 'adm0_tr' - 'adm1_en')
     AS feature FROM 
-    (SELECT ofis.numarataj, ofis.geometri, ofis.toplam_is toplam_ofis, il.geom, saha.hamveri, saha.supurme, saha.toplam_is toplam_saha FROM is_plani_ofis ofis 
+    (SELECT il.adm1_tr, ofis.numarataj, ofis.geometri, ofis.toplam_is toplam_ofis, il.geom, saha.hamveri, saha.supurme, saha.toplam_is toplam_saha FROM is_plani_ofis ofis 
     INNER JOIN is_plani_saha saha ON saha.il_kodu = ofis.il_kodu INNER JOIN il_sinir il ON ofis.il_kodu = il.plaka 
     WHERE plaka= '${il_kodlari[0]}' OR plaka='${il_kodlari[1]}' OR plaka='${il_kodlari[2]}' OR plaka='${il_kodlari[3]}' OR plaka='${il_kodlari[4]}' OR plaka='${il_kodlari[5]}'
         OR plaka='${il_kodlari[6]}' OR plaka='${il_kodlari[7]}' OR plaka='${il_kodlari[8]}')inputs)features;`
